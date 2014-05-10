@@ -5,7 +5,7 @@ download.file(fileUrl, destfile=zipFile, method="curl")
 unzip(zipFile)
 file.remove(zipFile)
 
-##read in data
+#read in data
 data <- read.table("household_power_consumption.txt", na.strings = "?", sep = ";", header = TRUE)
 data$Date <- as.Date(data$Date, format = "%d/%m/%Y")
 sub_data <- subset(data, Date == "2007-02-01" | Date == "2007-02-02")
