@@ -14,7 +14,8 @@ sub_data$Time <- paste(sub_data$Date, sub_data$Time)
 sub_data$Time <- strptime(sub_data$Time, format = "%Y-%m-%d %H:%M:%S")
 
 ##create plot
-par(mfcol = c(2, 2), mar = c(4, 4, 2, 1), oma = c(1, 1, 2, 1))
+png(filename="plot4.png",width=480,height=480)
+par(mfcol = c(2, 2))
 plot(sub_data$Time, sub_data$Global_active_power, 
      type = "l", 
      ylab = "Global Active Power (kilowatts)", ylim = c(0,6),
@@ -22,13 +23,13 @@ plot(sub_data$Time, sub_data$Global_active_power,
 
 plot(sub_data$Time, sub_data$Sub_metering_1,
      type = "l",
-     ylab = "Energy sub metering", ylim = c(0,40),
+     ylab = "Energy sub metering",
      xlab = "")
 
 lines(sub_data$Time, sub_data$Sub_metering_2, col = "red")
 lines(sub_data$Time, sub_data$Sub_metering_3, col = "blue")
 
-legend("topright", cex = 0.3, pch = "_",
+legend("topright", lty = 1, lwd = 2, bty = "n",
        col = c("black", "red", "blue"), 
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
@@ -39,7 +40,4 @@ plot(sub_data$Time, sub_data$Voltage,
 plot(sub_data$Time, sub_data$Global_reactive_power,
      type = "l", 
      ylab = "Global_reactive_power", xlab = "datetime")
-
-##save to working directory
-dev.copy(png,'Plot4.png')
 dev.off()

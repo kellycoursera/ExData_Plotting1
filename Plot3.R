@@ -14,18 +14,16 @@ sub_data$Time <- paste(sub_data$Date, sub_data$Time)
 sub_data$Time <- strptime(sub_data$Time, format = "%Y-%m-%d %H:%M:%S")
 
 ##create plot
+png(filename="plot3.png",width=480,height=480)
 plot(sub_data$Time, sub_data$Sub_metering_1,
      type = "l",
-     ylab = "Energy sub metering", ylim = c(0,40),
+     ylab = "Energy sub metering",
      xlab = "")
 
 lines(sub_data$Time, sub_data$Sub_metering_2, col = "red")
 lines(sub_data$Time, sub_data$Sub_metering_3, col = "blue")
 
-legend("topright", cex = 0.8, pch = "_",
+legend("topright", lty=1, lwd=2,
        col = c("black", "red", "blue"), 
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-
-##save to working directory
-dev.copy(png,'Plot3.png')
 dev.off()
